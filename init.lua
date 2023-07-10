@@ -174,8 +174,13 @@ require('lazy').setup({
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 
+-- always use spaces and not tabs
+vim.o.expandtab = true;
 -- set number of spaces in a tab to 2
 vim.o.tabstop = 2;
+vim.o.shiftwidth = 2;
+vim.o.softtabstop = 2;
+
 -- always keep 8 lines above / below the cursor
 vim.o.scrolloff = 8;
 -- use relative line numbers
