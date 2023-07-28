@@ -19,6 +19,7 @@ if not vim.loop.fs_stat(lazypath) then
   }
 end
 vim.opt.rtp:prepend(lazypath)
+vim.opt.autochdir=true
 
 -- NOTE: Here is where you install your plugins.
 --  You can configure plugins using the `config` key.
@@ -225,6 +226,10 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
 -- [[ Basic Keymaps ]]
+vim.keymap.set('n', '<leader>cdc', ":Ex c:/<CR>");
+vim.keymap.set('n', '<leader>cdd', ":Ex d:/<CR>");
+vim.keymap.set('n', '<leader>cdg', ":Ex d:/git<CR>");
+vim.keymap.set('n', '<leader>cdcfg', ":new c:/Users/Q1524/AppData/local/nvim/init.lua<CR>");
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -425,6 +430,7 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
+local nvim_lsp = require("lspconfig");
 
 mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
@@ -439,6 +445,13 @@ mason_lspconfig.setup_handlers {
     }
   end,
 }
+
+nvim_lsp.dartls.setup({
+  capabilities = capabilities,
+  flags = { debounce_text_changes = 300 },
+  init_options = { closingLabels = true },
+  root_dir = nvim_lsp.util.root_pattern("pubspec.yaml"),
+})
 
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
