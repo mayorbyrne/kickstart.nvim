@@ -160,7 +160,10 @@ vim.opt.autochdir = true
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   'github/copilot.vim',
-
+  {
+    'nvim-telescope/telescope-file-browser.nvim',
+    dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
+  },
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   -- NOTE: Plugins can also be added by using a table,
@@ -352,6 +355,7 @@ require('lazy').setup({
       -- Enable telescope extensions, if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
+      pcall(require('telescope').load_extension, 'file_browser')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -918,6 +922,7 @@ vim.keymap.set('n', '<leader>cdg', ':Ex d:/git<CR>')
 -- vim.keymap.set('n', '<leader>cdcfg', ':new c:/Users/Q1524/AppData/local/nvim/init.lua<CR>')
 vim.keymap.set('n', '<leader>cdcfg', ':new ~/.config/nvim/init.lua<CR>')
 vim.keymap.set('n', '<leader>p', ':Prettier<CR>')
+vim.keymap.set('n', '<leader>ee', ':Telescope file_browser<CR>')
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
