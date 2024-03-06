@@ -628,25 +628,6 @@ require('lazy').setup({
       }
     end,
   },
-  { -- Autoformat
-    'stevearc/conform.nvim',
-    opts = {
-      notify_on_error = false,
-      format_on_save = {
-        timeout_ms = 500,
-        lsp_fallback = true,
-      },
-      formatters_by_ft = {
-        lua = { 'stylua' },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
-        --
-        -- You can use a sub-list to tell conform to run *until* a formatter
-        -- is found.
-        -- javascript = { { "prettierd", "prettier" } },
-      },
-    },
-  },
   {
     'lukas-reineke/indent-blankline.nvim',
     main = 'ibl',
@@ -759,6 +740,14 @@ require('lazy').setup({
     priority = 1000,
     config = function()
       vim.cmd.colorscheme 'catppuccin-frappe'
+    end,
+  },
+  { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons' },
+  {
+    'Pocco81/auto-save.nvim',
+    config = function()
+      require('auto-save').setup {
+      }
     end,
   },
   {
@@ -894,13 +883,24 @@ vim.opt.termguicolors = true
 
 -- [[ Basic Keymaps ]]
 vim.keymap.set('n', '<leader>cdc', ':Ex c:/<CR>')
-vim.keymap.set('n', '<leader>cdd', ':Ex d:/<CR>')
+-- vim.keymap.set('n', '<leader>cdd', ':Ex d:/<CR>')
+vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents<CR>')
 vim.keymap.set('n', '<leader>cdg', ':Ex d:/git<CR>')
 -- vim.keymap.set('n', '<leader>cdcfg', ':new c:/Users/Q1524/AppData/local/nvim/init.lua<CR>')
 vim.keymap.set('n', '<leader>cdcfg', ':new ~/.config/nvim/init.lua<CR>')
 vim.keymap.set('n', '<leader>p', ':Prettier<CR>')
 vim.keymap.set('n', '<leader>ee', ':Telescope file_browser<CR>')
-
+vim.keymap.set('n', '<leader>tt', ':tab term<CR>:view<CR>')
+vim.keymap.set('n', '<leader>bn', ':bn<CR>')
+vim.keymap.set('n', '<leader>bp', ':bp<CR>')
+vim.keymap.set('t', '<leader>bd', ':bd!<CR>')
+vim.keymap.set('n', '<leader>bd', function()
+  if vim.bo.buftype == 'terminal' then
+    vim.cmd 'bd!'
+  else
+    vim.cmd 'bd'
+  end 
+end)
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', {
@@ -1049,6 +1049,12 @@ require('nvim-treesitter.configs').setup {
         ['<leader>A'] = '@parameter.inner',
       },
     },
+  },
+}
+
+require('bufferline').setup {
+  options = {
+    diagnostics = 'nvim_lsp',
   },
 }
 
