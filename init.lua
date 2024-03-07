@@ -890,7 +890,7 @@ vim.keymap.set('n', '<leader>cdcfg', ':new c:/Users/Q1524/AppData/local/nvim/ini
 -- vim.keymap.set('n', '<leader>cdcfg', ':new ~/.config/nvim/init.lua<CR>')
 vim.keymap.set('n', '<leader>p', ':Prettier<CR>')
 vim.keymap.set('n', '<leader>ee', ':Telescope file_browser<CR>')
-vim.keymap.set('n', '<leader>tt', ':tab term<CR>:view<CR>')
+vim.keymap.set('n', '<leader>tt', ':tab term C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe<CR>:view<CR>')
 vim.keymap.set('n', '<leader>bn', ':bn<CR>')
 vim.keymap.set('n', '<leader>bp', ':bp<CR>')
 vim.keymap.set('t', '<leader>bd', ':bd!<CR>')
