@@ -882,8 +882,8 @@ vim.opt.completeopt = 'menuone,noselect'
 vim.opt.termguicolors = true
 
 -- [[ Basic Keymaps ]]
-vim.keymap.set('n', '<leader>cdc', ':Ex c:/<CR>')
-vim.keymap.set('n', '<leader>cdd', ':Ex d:/<CR>')
+vim.keymap.set('n', '<leader>cdc', ':Telescope file_browser path=c:/<CR>')
+vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=d:/<CR>')
 -- vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents<CR>')
 vim.keymap.set('n', '<leader>cdg', ':Ex d:/git<CR>')
 vim.keymap.set('n', '<leader>cdcfg', ':new c:/Users/Q1524/AppData/local/nvim/init.lua<CR>')
