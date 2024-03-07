@@ -883,11 +883,11 @@ vim.opt.termguicolors = true
 
 -- [[ Basic Keymaps ]]
 vim.keymap.set('n', '<leader>cdc', ':Ex c:/<CR>')
--- vim.keymap.set('n', '<leader>cdd', ':Ex d:/<CR>')
-vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents<CR>')
+vim.keymap.set('n', '<leader>cdd', ':Ex d:/<CR>')
+-- vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents<CR>')
 vim.keymap.set('n', '<leader>cdg', ':Ex d:/git<CR>')
--- vim.keymap.set('n', '<leader>cdcfg', ':new c:/Users/Q1524/AppData/local/nvim/init.lua<CR>')
-vim.keymap.set('n', '<leader>cdcfg', ':new ~/.config/nvim/init.lua<CR>')
+vim.keymap.set('n', '<leader>cdcfg', ':new c:/Users/Q1524/AppData/local/nvim/init.lua<CR>')
+-- vim.keymap.set('n', '<leader>cdcfg', ':new ~/.config/nvim/init.lua<CR>')
 vim.keymap.set('n', '<leader>p', ':Prettier<CR>')
 vim.keymap.set('n', '<leader>ee', ':Telescope file_browser<CR>')
 vim.keymap.set('n', '<leader>tt', ':tab term<CR>:view<CR>')
