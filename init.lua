@@ -901,6 +901,10 @@ vim.keymap.set('n', '<leader>bd', function()
     vim.cmd 'bd'
   end 
 end)
+
+vim.keymap.set('n', 'd', '"_d', {})
+vim.keymap.set('n', 'c', '"_c', {})
+
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', {
