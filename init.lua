@@ -910,7 +910,8 @@ vim.opt.completeopt = 'menuone,noselect'
 vim.opt.termguicolors = true
 
 -- [[ Basic Keymaps ]]
-vim.keymap.set('n', 'd', '"_d')
+vim.keymap.set('n', 'd', '"_d', {})
+vim.keymap.set('n', 'c', '"_c', {})
 vim.keymap.set('n', '<leader>cdc', ':Telescope file_browser path=c:/<CR>')
 vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=d:/<CR>')
 -- vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents<CR>')
@@ -919,7 +920,7 @@ vim.keymap.set('n', '<leader>cdcfg', ':new c:/Users/Q1524/AppData/local/nvim/ini
 -- vim.keymap.set('n', '<leader>cdcfg', ':new ~/.config/nvim/init.lua<CR>')
 vim.keymap.set('n', '<leader>p', ':Prettier<CR>')
 vim.keymap.set('n', '<leader>ee', ':Telescope file_browser<CR>')
-vim.keymap.set('n', '<leader>tt', ':ToggleTerm<CR>') 
+vim.keymap.set('n', '<leader>tt', ':ToggleTerm<CR>')
 vim.keymap.set('n', '<leader>bn', ':bn<CR>')
 vim.keymap.set('n', '<leader>bp', ':bp<CR>')
 vim.keymap.set('t', '<leader>bd', ':bd!<CR>')
@@ -931,6 +932,7 @@ vim.keymap.set('n', '<leader>bd', function()
   end
 end)
 vim.keymap.set('n', '<leader>kb', ':TermExec cmd="webdev serve"<CR>')
+
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', {
