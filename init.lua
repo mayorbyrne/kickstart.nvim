@@ -339,6 +339,14 @@ require('lazy').setup({
         --   },
         -- },
         -- pickers = {}
+         defaults = {
+          sorting_strategy = "ascending",
+          layout_strategy = "vertical",
+          layout_config = {
+            prompt_position = "top"
+          },
+          border = true
+        },
         extensions = {
           ['ui-select'] = { require('telescope.themes').get_dropdown() },
         },
@@ -912,6 +920,11 @@ vim.opt.termguicolors = true
 -- [[ Basic Keymaps ]]
 vim.keymap.set('n', 'd', '"_d', {})
 vim.keymap.set('n', 'c', '"_c', {})
+vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false
+})
+vim.g.copilot_no_tab_map = true
 vim.keymap.set('n', '<leader>cdc', ':Telescope file_browser path=c:/<CR>')
 vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=d:/<CR>')
 -- vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents<CR>')
