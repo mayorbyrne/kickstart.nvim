@@ -114,9 +114,9 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', {
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', {
   desc = 'Move focus to the right window',
 })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', {
-  desc = 'Move focus to the lower window',
-})
+--vim.keymap.set('n', '<C-j>', '<C-w><C-j>', {
+ -- desc = 'Move focus to the lower window',
+--})
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', {
   desc = 'Move focus to the upper window',
 })
@@ -743,6 +743,34 @@ require('lazy').setup({
     end,
   },
   { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons' },
+  {'akinsho/toggleterm.nvim', version = "*", opts = {--[[ things you want to change go here]]},
+    config = function()
+      local powershell_options = {
+        shell = vim.fn.executable "pwsh" == 1 and "pwsh" or "powershell",
+        shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
+        shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
+        shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
+        shellquote = "",
+        shellxquote = "",
+      }
+
+      for option, value in pairs(powershell_options) do
+        vim.opt[option] = value
+        end
+
+      require("toggleterm").setup{}
+    end,
+  },
+  {
+    'numToStr/Comment.nvim',
+    opts = {
+        -- add any options here
+    },
+    config = function()
+      require('Comment').setup()
+    end,
+    lazy = false,
+  },
   {
     'Pocco81/auto-save.nvim',
     config = function()
@@ -882,15 +910,17 @@ vim.opt.completeopt = 'menuone,noselect'
 vim.opt.termguicolors = true
 
 -- [[ Basic Keymaps ]]
-vim.keymap.set('n', '<leader>cdc', ':Ex c:/<CR>')
--- vim.keymap.set('n', '<leader>cdd', ':Ex d:/<CR>')
-vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents<CR>')
+vim.keymap.set('n', 'd', '"_d', {})
+vim.keymap.set('n', 'c', '"_c', {})
+vim.keymap.set('n', '<leader>cdc', ':Telescope file_browser path=c:/<CR>')
+vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=d:/<CR>')
+-- vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents<CR>')
 vim.keymap.set('n', '<leader>cdg', ':Ex d:/git<CR>')
--- vim.keymap.set('n', '<leader>cdcfg', ':new c:/Users/Q1524/AppData/local/nvim/init.lua<CR>')
-vim.keymap.set('n', '<leader>cdcfg', ':new ~/.config/nvim/init.lua<CR>')
+vim.keymap.set('n', '<leader>cdcfg', ':new c:/Users/Q1524/AppData/local/nvim/init.lua<CR>')
+-- vim.keymap.set('n', '<leader>cdcfg', ':new ~/.config/nvim/init.lua<CR>')
 vim.keymap.set('n', '<leader>p', ':Prettier<CR>')
 vim.keymap.set('n', '<leader>ee', ':Telescope file_browser<CR>')
-vim.keymap.set('n', '<leader>tt', ':tab term<CR>:view<CR>')
+vim.keymap.set('n', '<leader>tt', ':ToggleTerm<CR>')
 vim.keymap.set('n', '<leader>bn', ':bn<CR>')
 vim.keymap.set('n', '<leader>bp', ':bp<CR>')
 vim.keymap.set('t', '<leader>bd', ':bd!<CR>')
@@ -899,11 +929,9 @@ vim.keymap.set('n', '<leader>bd', function()
     vim.cmd 'bd!'
   else
     vim.cmd 'bd'
-  end 
+  end
 end)
-
-vim.keymap.set('n', 'd', '"_d', {})
-vim.keymap.set('n', 'c', '"_c', {})
+vim.keymap.set('n', '<leader>kb', ':TermExec cmd="webdev serve"<CR>')
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
