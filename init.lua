@@ -339,6 +339,14 @@ require('lazy').setup({
         --   },
         -- },
         -- pickers = {}
+         defaults = {
+          sorting_strategy = "ascending",
+          layout_strategy = "vertical",
+          layout_config = {
+            prompt_position = "top"
+          },
+          border = true
+        },
         extensions = {
           ['ui-select'] = { require('telescope.themes').get_dropdown() },
         },
@@ -413,6 +421,9 @@ require('lazy').setup({
         desc = '[S]earch [N]eovim files',
       })
     end,
+  },
+  {
+    'Mofiqul/vscode.nvim'
   },
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -846,6 +857,37 @@ require('lazy').setup({
   },
 }, {})
 
+local c = require('vscode.colors').get_colors()
+require('vscode').setup({
+    -- Alternatively set style in setup
+    -- style = 'light'
+
+    -- Enable transparent background
+    transparent = true,
+
+    -- Enable italic comment
+    italic_comments = true,
+
+    -- Underline `@markup.link.*` variants
+    underline_links = true,
+
+    -- Disable nvim-tree background color
+    disable_nvimtree_bg = true,
+
+    -- Override colors (see ./lua/vscode/colors.lua)
+    color_overrides = {
+        vscLineNumber = '#FFFFFF',
+    },
+
+    -- Override highlight groups (see ./lua/vscode/theme.lua)
+    group_overrides = {
+        -- this supports the same val table as vim.api.nvim_set_hl
+        -- use colors from this colorscheme by requiring vscode.colors!
+        Cursor = { fg=c.vscDarkBlue, bg=c.vscLightGreen, bold=true },
+    }
+})
+require('vscode').load()
+
 require('ibl').setup {
   indent = {
     char = '┊',
@@ -912,12 +954,13 @@ vim.opt.termguicolors = true
 -- [[ Basic Keymaps ]]
 vim.keymap.set('n', 'd', '"_d', {})
 vim.keymap.set('n', 'c', '"_c', {})
--- vim.keymap.set('n', '<leader>cdc', ':Telescope file_browser path=c:/<CR>')
--- vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=d:/<CR>')
 vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents<CR>')
--- vim.keymap.set('n', '<leader>cdg', ':Ex d:/git<CR>')
--- vim.keymap.set('n', '<leader>cdcfg', ':new c:/Users/Q1524/AppData/local/nvim/init.lua<CR>')
 vim.keymap.set('n', '<leader>cdcfg', ':new ~/.config/nvim/init.lua<CR>')
+vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false
+})
+vim.g.copilot_no_tab_map = true
 vim.keymap.set('n', '<leader>p', ':Prettier<CR>')
 vim.keymap.set('n', '<leader>ee', ':Telescope file_browser<CR>')
 vim.keymap.set('n', '<leader>tt', ':ToggleTerm<CR>')
