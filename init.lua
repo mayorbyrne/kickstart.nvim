@@ -953,7 +953,9 @@ vim.opt.termguicolors = true
 
 -- [[ Basic Keymaps ]]
 vim.keymap.set('n', 'd', '"_d', {})
+vim.keymap.set('v', 'd', '"_d', {})
 vim.keymap.set('n', 'c', '"_c', {})
+vim.keymap.set('v', 'c', '"_c', {})
 vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents<CR>')
 vim.keymap.set('n', '<leader>cdcfg', ':new ~/.config/nvim/init.lua<CR>')
 vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
