@@ -343,7 +343,8 @@ require('lazy').setup({
           sorting_strategy = "ascending",
           layout_strategy = "vertical",
           layout_config = {
-            prompt_position = "top"
+            prompt_position = "top",
+            preview_cutoff = 10000000000000000000,
           },
           border = true
         },
@@ -966,7 +967,7 @@ vim.keymap.set('n', '<leader>cdc', ':Telescope file_browser path=c:/ hidden=true
 vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=d:/ hidden=true<CR>')
 -- vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents<CR>')
 vim.keymap.set('n', '<leader>cdg', ':Ex d:/git<CR>')
-vim.keymap.set('n', '<leader>cdcfg', ':new c:/Users/Q1524/AppData/local/nvim/init.lua<CR>')
+vim.keymap.set('n', '<leader>cdcfg', ':tabe c:/Users/Q1524/AppData/local/nvim/init.lua<CR>')
 --- vim.keymap.set('n', '<leader>cdcfg', ':new ~/.config/nvim/init.lua<CR>')
 vim.g.copilot_no_tab_map = true
 vim.keymap.set('n', '<leader>p', ':Prettier<CR>')
@@ -982,6 +983,10 @@ vim.keymap.set('n', '<leader>bd', function()
     vim.cmd 'bd'
   end
 end)
+
+vim.cmd('ca wq bd!');
+vim.cmd('ca q bd!');
+
 vim.keymap.set('n', '<leader>kb', ':TermExec cmd="webdev serve"<CR>')
 
 -- Keymaps for better default experience
