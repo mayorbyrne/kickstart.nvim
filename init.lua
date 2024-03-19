@@ -165,7 +165,7 @@ require('lazy').setup({
     event = 'VimEnter',
     config = function()
       require('dashboard').setup {
-        theme = "doom",
+        theme = "hyper",
         config = {
           header = vim.split([[
                                                                     
