@@ -161,11 +161,41 @@ vim.opt.autochdir = true
 require('lazy').setup({
   'github/copilot.vim',
   {
-    "startup-nvim/startup.nvim",
-    requires = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"},
+    'nvimdev/dashboard-nvim',
+    event = 'VimEnter',
     config = function()
-      require"startup".setup()
-    end
+      require('dashboard').setup {
+        theme = "doom",
+        config = {
+          header = vim.split([[
+                                                                    
+     *****                                                          
+  ******                                         *                  
+ **   *  *    **                  **            ***                 
+*    *  *   **** *                **             *                  
+    *  *     ****                  **    ***                        
+   ** **    * **           ***      **    ***  ***     ***  ****    
+   ** **   *              * ***     **     ***  ***     **** **** * 
+   ** *****              *   ***    **      **   **      **   ****  
+   ** ** ***            **    ***   **      **   **      **    **   
+   ** **   ***          ********    **      **   **      **    **   
+   *  **    ***         *******     **      **   **      **    **   
+      *       ***       **          **      *    **      **    **   
+  ****         ***      ****    *    *******     **      **    **   
+ *  *****        ***  *  *******      *****      *** *   ***   ***  
+*    ***           ***    *****                   ***     ***   *** 
+*                                                                   
+ **                                                                 
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+]], "\n"),},
+      }
+    end,
+    dependencies = { {'nvim-tree/nvim-web-devicons'}}
   },
   {
     'nvim-telescope/telescope-file-browser.nvim',
