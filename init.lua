@@ -161,6 +161,43 @@ vim.opt.autochdir = true
 require('lazy').setup({
   'github/copilot.vim',
   {
+    'nvimdev/dashboard-nvim',
+    event = 'VimEnter',
+    config = function()
+      require('dashboard').setup {
+        theme = "hyper",
+        config = {
+          header = vim.split([[
+                                                                    
+     *****                                                          
+  ******                                         *                  
+ **   *  *    **                  **            ***                 
+*    *  *   **** *                **             *                  
+    *  *     ****                  **    ***                        
+   ** **    * **           ***      **    ***  ***     ***  ****    
+   ** **   *              * ***     **     ***  ***     **** **** * 
+   ** *****              *   ***    **      **   **      **   ****  
+   ** ** ***            **    ***   **      **   **      **    **   
+   ** **   ***          ********    **      **   **      **    **   
+   *  **    ***         *******     **      **   **      **    **   
+      *       ***       **          **      *    **      **    **   
+  ****         ***      ****    *    *******     **      **    **   
+ *  *****        ***  *  *******      *****      *** *   ***   ***  
+*    ***           ***    *****                   ***     ***   *** 
+*                                                                   
+ **                                                                 
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+]], "\n"),},
+      }
+    end,
+    dependencies = { {'nvim-tree/nvim-web-devicons'}}
+  },
+  {
     'nvim-telescope/telescope-file-browser.nvim',
     dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
   },
@@ -343,7 +380,8 @@ require('lazy').setup({
           sorting_strategy = "ascending",
           layout_strategy = "vertical",
           layout_config = {
-            prompt_position = "top"
+            prompt_position = "top",
+            preview_cutoff = 10000000000000000000,
           },
           border = true
         },
@@ -956,12 +994,18 @@ vim.keymap.set('n', 'd', '"_d', {})
 vim.keymap.set('v', 'd', '"_d', {})
 vim.keymap.set('n', 'c', '"_c', {})
 vim.keymap.set('v', 'c', '"_c', {})
-vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents<CR>')
-vim.keymap.set('n', '<leader>cdcfg', ':new ~/.config/nvim/init.lua<CR>')
+-- vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents<CR>')
+-- vim.keymap.set('n', '<leader>cdcfg', ':new ~/.config/nvim/init.lua<CR>')
 vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
   expr = true,
   replace_keycodes = false
 })
+vim.keymap.set('n', '<leader>cdc', ':Telescope file_browser path=c:/ hidden=true<CR>')
+vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=d:/ hidden=true<CR>')
+-- vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents<CR>')
+vim.keymap.set('n', '<leader>cdg', ':Ex d:/git<CR>')
+vim.keymap.set('n', '<leader>cdcfg', ':tabe c:/Users/Q1524/AppData/local/nvim/init.lua<CR>')
+--- vim.keymap.set('n', '<leader>cdcfg', ':new ~/.config/nvim/init.lua<CR>')
 vim.g.copilot_no_tab_map = true
 vim.keymap.set('n', '<leader>p', ':Prettier<CR>')
 vim.keymap.set('n', '<leader>ee', ':Telescope file_browser<CR>')
@@ -976,6 +1020,10 @@ vim.keymap.set('n', '<leader>bd', function()
     vim.cmd 'bd'
   end
 end)
+
+vim.cmd('ca wq bd!');
+vim.cmd('ca q bd!');
+
 vim.keymap.set('n', '<leader>kb', ':TermExec cmd="webdev serve"<CR>')
 
 -- Keymaps for better default experience
