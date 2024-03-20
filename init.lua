@@ -994,19 +994,23 @@ vim.keymap.set('n', 'd', '"_d', {})
 vim.keymap.set('v', 'd', '"_d', {})
 vim.keymap.set('n', 'c', '"_c', {})
 vim.keymap.set('v', 'c', '"_c', {})
--- vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents<CR>')
--- vim.keymap.set('n', '<leader>cdcfg', ':new ~/.config/nvim/init.lua<CR>')
 vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
   expr = true,
   replace_keycodes = false
 })
-vim.keymap.set('n', '<leader>cdc', ':Telescope file_browser path=c:/ hidden=true<CR>')
-vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=d:/ hidden=true<CR>')
--- vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents<CR>')
-vim.keymap.set('n', '<leader>cdg', ':Ex d:/git<CR>')
-vim.keymap.set('n', '<leader>cdcfg', ':tabe c:/Users/Q1524/AppData/local/nvim/init.lua<CR>')
---- vim.keymap.set('n', '<leader>cdcfg', ':new ~/.config/nvim/init.lua<CR>')
 vim.g.copilot_no_tab_map = true
+
+-- PC SETTINGS --
+-- vim.keymap.set('n', '<leader>cdc', ':Telescope file_browser path=c:/ hidden=true<CR>')
+-- vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=d:/ hidden=true<CR>')
+-- vim.keymap.set('n', '<leader>cdg', ':Ex d:/git<CR>')
+-- vim.keymap.set('n', '<leader>cdcfg', ':tabe c:/Users/Q1524/AppData/local/nvim/init.lua<CR>')
+
+-- MAC SETTINGS --
+vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents hidden=true<CR>')
+vim.keymap.set('n', '<leader>cdg', ':Telescope file_browser path=~/Documents hidden=true<CR>')
+vim.keymap.set('n', '<leader>cdcfg', ':tabe ~/.config/nvim/init.lua<CR>')
+
 vim.keymap.set('n', '<leader>p', ':Prettier<CR>')
 vim.keymap.set('n', '<leader>ee', ':Telescope file_browser<CR>')
 vim.keymap.set('n', '<leader>tt', ':ToggleTerm<CR>')
