@@ -165,7 +165,7 @@ require('lazy').setup({
     event = 'VimEnter',
     config = function()
       require('dashboard').setup {
-        theme = "hyper",
+        theme = "doom",
         config = {
           header = vim.split([[
                                                                     
@@ -192,11 +192,43 @@ require('lazy').setup({
                                                                     
                                                                     
                                                                     
-]], "\n"),},
-      }
-    end,
+]], "\n"),
+    center = {
+      {
+        icon = ' ',
+        desc = 'New File           ',
+        key = 'n',
+        key_format = ' %s', -- remove default surrounding `[]`
+        action = 'ene'
+      },
+      {
+        icon = ' ',
+        desc = 'Recent Files       ',
+        key = 'r',
+        key_format = ' %s', -- remove default surrounding `[]`
+        action = 'Telescope oldfiles'
+      },
+      {
+        icon = ' ',
+        icon_hl = 'Title',
+        desc = 'Edit Config        ',
+        key = 'e',
+        key_format = ' %s', -- remove default surrounding `[]`
+        action = 'edit ~/.config/nvim/init.lua'
+      },
+      {
+        icon = ' ',
+        desc = 'Quit               ',
+        key = 'q',
+        key_format = ' %s', -- remove default surrounding `[]`
+        action = 'quit'
+      },
+    },
+    footer = {}  --your footer
+  },        
     dependencies = { {'nvim-tree/nvim-web-devicons'}}
-  },
+  }end
+},
   {
     'nvim-telescope/telescope-file-browser.nvim',
     dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
@@ -1011,6 +1043,7 @@ vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents hid
 vim.keymap.set('n', '<leader>cdg', ':Telescope file_browser path=~/Documents hidden=true<CR>')
 vim.keymap.set('n', '<leader>cdcfg', ':tabe ~/.config/nvim/init.lua<CR>')
 
+vim.keymap.set('n', '<leader>dd', ':Dashboard<CR>')
 vim.keymap.set('n', '<leader>p', ':Prettier<CR>')
 vim.keymap.set('n', '<leader>ee', ':Telescope file_browser<CR>')
 vim.keymap.set('n', '<leader>tt', ':ToggleTerm<CR>')
