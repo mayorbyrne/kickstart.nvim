@@ -214,7 +214,7 @@ require('lazy').setup({
         desc = 'Edit Config        ',
         key = 'e',
         key_format = ' %s', -- remove default surrounding `[]`
-        action = 'edit ~/.config/nvim/init.lua'
+        action = 'edit c:/Users/Q1524/AppData/local/nvim/init.lua'
       },
       {
         icon = ' ',
