@@ -195,21 +195,31 @@ require('lazy').setup({
 ]], "\n"),
     center = {
       {
-        icon = ' ',
+        icon = ' ',
+        icon_hl = 'Title',
         desc = 'New File           ',
         key = 'n',
         key_format = ' %s', -- remove default surrounding `[]`
         action = 'ene'
       },
       {
-        icon = ' ',
+        icon = ' ',
+        icon_hl = 'Title',
         desc = 'Recent Files       ',
         key = 'r',
         key_format = ' %s', -- remove default surrounding `[]`
         action = 'Telescope oldfiles'
       },
       {
-        icon = ' ',
+        icon = ' ',
+        icon_hl = 'Title',
+        desc = 'Open Projects      ',
+        key = 'p',
+        key_format = ' %s', -- remove default surrounding `[]`
+        action = 'Telescope projects'
+      },
+      {
+        icon = ' ',
         icon_hl = 'Title',
         desc = 'Edit Config        ',
         key = 'e',
@@ -217,7 +227,8 @@ require('lazy').setup({
         action = 'edit ~/.config/nvim/init.lua'
       },
       {
-        icon = ' ',
+        icon = ' ',
+        icon_hl = 'Title',
         desc = 'Quit               ',
         key = 'q',
         key_format = ' %s', -- remove default surrounding `[]`
