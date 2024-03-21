@@ -881,36 +881,41 @@ header = vim.split([[
 ]], "\n"),
                 center = {{
                     icon = ' ',
-                    icon_hl = 'Title',
+                    icon_hl = 'DiagnosticHint',
                     desc = 'New File           ',
+                    desc_hl = 'DiagnosticHint',
                     key = 'n',
                     key_format = ' %s', -- remove default surrounding `[]`
                     action = 'ene'
                 }, {
                     icon = ' ',
-                    icon_hl = 'Title',
+                    icon_hl = 'DiagnosticHint',
                     desc = 'Recent Files       ',
+                    desc_hl = 'DiagnosticHint',
                     key = 'r',
                     key_format = ' %s', -- remove default surrounding `[]`
                     action = 'Telescope oldfiles'
                 }, {
                     icon = ' ',
-                    icon_hl = 'Title',
+                    icon_hl = 'DiagnosticHint',
                     desc = 'Open Projects      ',
+                    desc_hl = 'DiagnosticHint',
                     key = 'p',
                     key_format = ' %s', -- remove default surrounding `[]`
                     action = 'Telescope project'
                 }, {
                     icon = ' ',
-                    icon_hl = 'Title',
+                    icon_hl = 'DiagnosticHint',
                     desc = 'Edit Config        ',
+                    desc_hl = 'DiagnosticHint',
                     key = 'e',
                     key_format = ' %s', -- remove default surrounding `[]`
                     action = 'edit ~/AppData/local/nvim/init.lua'
                 }, {
                     icon = ' ',
-                    icon_hl = 'Title',
+                    icon_hl = 'DiagnosticHint',
                     desc = 'Quit               ',
+                    desc_hl = 'DiagnosticHint',
                     key = 'q',
                     key_format = ' %s', -- remove default surrounding `[]`
                     action = 'quit'
