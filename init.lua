@@ -344,7 +344,10 @@ require('lazy').setup({'github/copilot.vim', {
             extensions = {
                 ['ui-select'] = {require('telescope.themes').get_dropdown()},
                 project = {
-                    base_dirs = {'~/Documents'},
+                    base_dirs = {
+                      '~/Documents',
+                      'd:/git',
+                    },
                     hidden_files = true, -- default: false
                     theme = "dropdown",
                     order_by = "asc",
