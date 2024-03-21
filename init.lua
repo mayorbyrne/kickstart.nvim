@@ -346,7 +346,7 @@ require('lazy').setup({'github/copilot.vim', {
                 project = {
                     base_dirs = {
                       '~/Documents',
-                      'd:/git',
+                      { 'd:/git', max_depth = 2 }
                     },
                     hidden_files = true, -- default: false
                     theme = "dropdown",
