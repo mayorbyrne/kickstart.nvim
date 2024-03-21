@@ -779,6 +779,8 @@ require('lazy').setup({'github/copilot.vim', {
     end,
     lazy = false
 }, {
+    'tpope/vim-fugitive',
+}, {
     'Pocco81/auto-save.nvim',
     config = function()
         require('auto-save').setup {}
