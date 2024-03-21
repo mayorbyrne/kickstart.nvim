@@ -779,6 +779,8 @@ require('lazy').setup({'github/copilot.vim', {
     end,
     lazy = false
 }, {
+    'tpope/vim-fugitive',
+}, {
     'Pocco81/auto-save.nvim',
     config = function()
         require('auto-save').setup {}
@@ -849,7 +851,7 @@ require('lazy').setup({'github/copilot.vim', {
     'nvimdev/dashboard-nvim',
     event = 'VimEnter',
     config = function()
-        require('dashboard').setup {
+      require('dashboard').setup {
             theme = "doom",
             config = {
 header = vim.split([[
@@ -870,12 +872,6 @@ header = vim.split([[
  *  *****        ***  *  *******      *****      *** *   ***   ***  
 *    ***           ***    *****                   ***     ***   *** 
 *                                                                   
- **          
-
-
-
-
-
 
 
 
@@ -885,41 +881,50 @@ header = vim.split([[
 ]], "\n"),
                 center = {{
                     icon = ' ',
-                    icon_hl = 'Title',
+                    icon_hl = 'DiagnosticHint',
                     desc = 'New File           ',
+                    desc_hl = 'DiagnosticHint',
                     key = 'n',
                     key_format = ' %s', -- remove default surrounding `[]`
                     action = 'ene'
                 }, {
                     icon = ' ',
-                    icon_hl = 'Title',
+                    icon_hl = 'DiagnosticHint',
                     desc = 'Recent Files       ',
+                    desc_hl = 'DiagnosticHint',
                     key = 'r',
                     key_format = ' %s', -- remove default surrounding `[]`
                     action = 'Telescope oldfiles'
                 }, {
                     icon = ' ',
-                    icon_hl = 'Title',
+                    icon_hl = 'DiagnosticHint',
                     desc = 'Open Projects      ',
+                    desc_hl = 'DiagnosticHint',
                     key = 'p',
                     key_format = ' %s', -- remove default surrounding `[]`
                     action = 'Telescope project'
                 }, {
                     icon = ' ',
-                    icon_hl = 'Title',
+                    icon_hl = 'DiagnosticHint',
                     desc = 'Edit Config        ',
+                    desc_hl = 'DiagnosticHint',
                     key = 'e',
                     key_format = ' %s', -- remove default surrounding `[]`
                     action = 'edit ~/.config/nvim/init.lua'
                 }, {
                     icon = ' ',
-                    icon_hl = 'Title',
+                    icon_hl = 'DiagnosticHint',
                     desc = 'Quit               ',
+                    desc_hl = 'DiagnosticHint',
                     key = 'q',
                     key_format = ' %s', -- remove default surrounding `[]`
                     action = 'quit'
                 }},
-                footer = {} -- your footer
+                footer = function()
+                  local stats = require("lazy").stats()
+                  local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+                  return {'', '', '', '', '', 'Startup Time: ' .. ms .. ' ms', 'Plugins: ' .. stats.loaded .. ' loaded / ' .. stats.count .. ' installed' }
+                  end,
             },
             dependencies = {{'nvim-tree/nvim-web-devicons'}}
         }
