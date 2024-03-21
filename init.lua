@@ -963,7 +963,19 @@ require('ibl').setup {
     },
     whitespace = {
         remove_blankline_trail = false
-    }
+    },
+    exclude = {
+    filetypes = {
+      'lspinfo',
+      'packer',
+      'checkhealth',
+      'help',
+      'man',
+      'dashboard',
+      '',
+    },
+    -- filetypes = vim.g.exclude_filetypes,
+  },
 }
 
 -- [[ Setting options ]]
