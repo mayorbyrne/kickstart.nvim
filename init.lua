@@ -158,6 +158,7 @@ vim.opt.autochdir = true
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
+
 require('lazy').setup({'github/copilot.vim', {
     'nvim-telescope/telescope-file-browser.nvim',
     dependencies = {'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim'}
@@ -343,7 +344,10 @@ require('lazy').setup({'github/copilot.vim', {
             extensions = {
                 ['ui-select'] = {require('telescope.themes').get_dropdown()},
                 project = {
-                    base_dirs = {'~/Documents'},
+                    base_dirs = {
+                      '~/Documents',
+                      { 'd:/git', max_depth = 2 }
+                    },
                     hidden_files = true, -- default: false
                     theme = "dropdown",
                     order_by = "asc",
@@ -906,7 +910,7 @@ header = vim.split([[
                     desc = 'Edit Config        ',
                     key = 'e',
                     key_format = ' %s', -- remove default surrounding `[]`
-                    action = 'edit ~/.config/nvim/init.lua'
+                    action = 'edit ~/AppData/local/nvim/init.lua'
                 }, {
                     icon = ' ',
                     icon_hl = 'Title',
@@ -959,7 +963,19 @@ require('ibl').setup {
     },
     whitespace = {
         remove_blankline_trail = false
-    }
+    },
+    exclude = {
+    filetypes = {
+      'lspinfo',
+      'packer',
+      'checkhealth',
+      'help',
+      'man',
+      'dashboard',
+      '',
+    },
+    -- filetypes = vim.g.exclude_filetypes,
+  },
 }
 
 -- [[ Setting options ]]
@@ -1028,15 +1044,15 @@ vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
 vim.g.copilot_no_tab_map = true
 
 -- PC SETTINGS --
--- vim.keymap.set('n', '<leader>cdc', ':Telescope file_browser path=c:/ hidden=true<CR>')
--- vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=d:/ hidden=true<CR>')
--- vim.keymap.set('n', '<leader>cdg', ':Ex d:/git<CR>')
--- vim.keymap.set('n', '<leader>cdcfg', ':tabe c:/Users/Q1524/AppData/local/nvim/init.lua<CR>')
+vim.keymap.set('n', '<leader>cdc', ':Telescope file_browser path=c:/ hidden=true<CR>')
+vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=d:/ hidden=true<CR>')
+vim.keymap.set('n', '<leader>cdg', ':Ex d:/git<CR>')
+vim.keymap.set('n', '<leader>cdcfg', ':tabe ~/appData/local/nvim/init.lua<CR>')
 
 -- MAC SETTINGS --
-vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents hidden=true<CR>')
-vim.keymap.set('n', '<leader>cdg', ':Telescope file_browser path=~/Documents hidden=true<CR>')
-vim.keymap.set('n', '<leader>cdcfg', ':tabe ~/.config/nvim/init.lua<CR>')
+-- vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents hidden=true<CR>')
+-- vim.keymap.set('n', '<leader>cdg', ':Telescope file_browser path=~/Documents hidden=true<CR>')
+-- vim.keymap.set('n', '<leader>cdcfg', ':tabe ~/.config/nvim/init.lua<CR>')
 
 vim.keymap.set('n', '<leader>dd', ':Dashboard<CR>')
 vim.keymap.set('n', '<leader>p', ':Prettier<CR>')
