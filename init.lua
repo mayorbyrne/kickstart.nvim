@@ -851,7 +851,7 @@ require('lazy').setup({'github/copilot.vim', {
     'nvimdev/dashboard-nvim',
     event = 'VimEnter',
     config = function()
-        require('dashboard').setup {
+      require('dashboard').setup {
             theme = "doom",
             config = {
 header = vim.split([[
@@ -915,7 +915,11 @@ header = vim.split([[
                     key_format = ' %s', -- remove default surrounding `[]`
                     action = 'quit'
                 }},
-                footer = {} -- your footer
+                footer = function()
+                  local stats = require("lazy").stats()
+                  local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+                  return {'', '', '', '', '', 'Startup Time: ' .. ms .. ' ms', 'Plugins: ' .. stats.loaded .. ' loaded / ' .. stats.count .. ' installed' }
+                  end,
             },
             dependencies = {{'nvim-tree/nvim-web-devicons'}}
         }
