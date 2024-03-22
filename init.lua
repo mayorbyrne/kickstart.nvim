@@ -780,6 +780,7 @@ require('lazy').setup({'github/copilot.vim', {
     lazy = false
 }, {
     'tpope/vim-fugitive',
+    'rhysd/conflict-marker.vim',
 }, {
     'Pocco81/auto-save.nvim',
     config = function()
