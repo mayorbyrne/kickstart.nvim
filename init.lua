@@ -778,9 +778,17 @@ require('lazy').setup({'github/copilot.vim', {
         require('Comment').setup()
     end,
     lazy = false
-}, {
-    'tpope/vim-fugitive',
-    'rhysd/conflict-marker.vim',
+},
+  'tpope/vim-fugitive',
+  'rhysd/conflict-marker.vim',
+  {
+    'cappyzawa/trim.nvim',
+    config = function()
+      require("trim").setup({
+        ft_blocklist = {"lua"},
+        trim_last_line = false,
+      })
+    end
 }, {
     'Pocco81/auto-save.nvim',
     config = function()
