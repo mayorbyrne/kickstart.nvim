@@ -5,6 +5,26 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.netrw_sort_options = 'i'
 
+vim.cmd([[
+let g:lsc_auto_map = {
+    \ 'GoToDefinition': 'gdd',
+    \ 'GoToDefinitionSplit': ['<C-W>]', '<C-W><C-]>'],
+    \ 'FindReferences': 'gr',
+    \ 'NextReference': '<C-n>',
+    \ 'PreviousReference': '<C-p>',
+    \ 'FindImplementations': 'gI',
+    \ 'FindCodeActions': 'ga',
+    \ 'Rename': 'gR',
+    \ 'ShowHover': v:true,
+    \ 'DocumentSymbol': 'go',
+    \ 'WorkspaceSymbol': 'gS',
+    \ 'SignatureHelp': 'gm',
+    \ 'Completion': 'completefunc',
+    \}
+]])
+
+vim.g.filetype = "on"
+
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
@@ -1360,11 +1380,6 @@ mason_lspconfig.setup_handlers {function(server_name)
         settings = servers[server_name]
     }
 end}
-
-nvim_lsp.dartls.setup {
-    capabilities = capabilities,
-    on_attach = on_attach
-}
 
 local null_ls = require 'null-ls'
 
