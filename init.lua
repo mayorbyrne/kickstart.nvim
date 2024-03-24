@@ -789,7 +789,12 @@ require('lazy').setup({'github/copilot.vim', {
         trim_last_line = false,
       })
     end
-}, {
+}, 
+'natebosch/vim-lsc',
+  'natebosch/vim-lsc-dart',
+
+
+  {
     'Pocco81/auto-save.nvim',
     config = function()
         require('auto-save').setup {}
