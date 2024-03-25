@@ -945,9 +945,9 @@ header = vim.split([[
                     key = 'e',
                     key_format = ' %s', -- remove default surrounding `[]`
                     --  PC SETTING
-                    -- action = 'edit ~/appData/local/nvim/init.lua'
+                    action = 'edit ~/appData/local/nvim/init.lua'
                     -- MAC SETTING
-                    action = 'edit ~/.config/nvim/init.lua'
+                    -- action = 'edit ~/.config/nvim/init.lua'
                 }, {
                     icon = ' ',
                     icon_hl = 'DiagnosticHint',
@@ -1086,15 +1086,15 @@ vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
 vim.g.copilot_no_tab_map = true
 
 -- PC SETTINGS --
--- vim.keymap.set('n', '<leader>cdc', ':Telescope file_browser path=c:/ hidden=true<CR>')
--- vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=d:/ hidden=true<CR>')
--- vim.keymap.set('n', '<leader>cdg', ':Ex d:/git<CR>')
--- vim.keymap.set('n', '<leader>cdcfg', ':tabe ~/appData/local/nvim/init.lua<CR>')
+vim.keymap.set('n', '<leader>cdc', ':Telescope file_browser path=c:/ hidden=true<CR>')
+vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=d:/ hidden=true<CR>')
+vim.keymap.set('n', '<leader>cdg', ':Ex d:/git<CR>')
+vim.keymap.set('n', '<leader>cdcfg', ':tabe ~/appData/local/nvim/init.lua<CR>')
 
 -- MAC SETTINGS --
-vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents hidden=true<CR>')
-vim.keymap.set('n', '<leader>cdg', ':Telescope file_browser path=~/Documents hidden=true<CR>')
-vim.keymap.set('n', '<leader>cdcfg', ':tabe ~/.config/nvim/init.lua<CR>')
+-- vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents hidden=true<CR>')
+-- vim.keymap.set('n', '<leader>cdg', ':Telescope file_browser path=~/Documents hidden=true<CR>')
+-- vim.keymap.set('n', '<leader>cdcfg', ':tabe ~/.config/nvim/init.lua<CR>')
 
 vim.keymap.set('n', '<leader>dd', ':Dashboard<CR>')
 vim.keymap.set('n', '<leader>p', ':Prettier<CR>')
