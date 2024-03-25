@@ -5,6 +5,26 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.netrw_sort_options = 'i'
 
+vim.cmd([[
+let g:lsc_auto_map = {
+    \ 'GoToDefinition': 'gdd',
+    \ 'GoToDefinitionSplit': ['<C-W>]', '<C-W><C-]>'],
+    \ 'FindReferences': 'gr',
+    \ 'NextReference': '<C-n>',
+    \ 'PreviousReference': '<C-p>',
+    \ 'FindImplementations': 'gI',
+    \ 'FindCodeActions': 'ga',
+    \ 'Rename': 'gR',
+    \ 'ShowHover': v:true,
+    \ 'DocumentSymbol': 'go',
+    \ 'WorkspaceSymbol': 'gS',
+    \ 'SignatureHelp': 'gm',
+    \ 'Completion': 'completefunc',
+    \}
+]])
+
+vim.g.filetype = "on"
+
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
@@ -346,7 +366,7 @@ require('lazy').setup({'github/copilot.vim', {
                 project = {
                     base_dirs = {
                       '~/Documents',
-                      { 'd:/git', max_depth = 2 }
+                      -- { 'd:/git', max_depth = 2 }
                     },
                     hidden_files = true, -- default: false
                     theme = "dropdown",
@@ -789,7 +809,12 @@ require('lazy').setup({'github/copilot.vim', {
         trim_last_line = false,
       })
     end
-}, {
+}, 
+'natebosch/vim-lsc',
+  'natebosch/vim-lsc-dart',
+
+
+  {
     'Pocco81/auto-save.nvim',
     config = function()
         require('auto-save').setup {}
@@ -919,7 +944,7 @@ header = vim.split([[
                     desc_hl = 'DiagnosticHint',
                     key = 'e',
                     key_format = ' %s', -- remove default surrounding `[]`
-                    action = 'edit ~/AppData/local/nvim/init.lua'
+                    action = 'edit ~/.config/nvim/init.lua'
                 }, {
                     icon = ' ',
                     icon_hl = 'DiagnosticHint',
@@ -1058,15 +1083,15 @@ vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
 vim.g.copilot_no_tab_map = true
 
 -- PC SETTINGS --
-vim.keymap.set('n', '<leader>cdc', ':Telescope file_browser path=c:/ hidden=true<CR>')
-vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=d:/ hidden=true<CR>')
-vim.keymap.set('n', '<leader>cdg', ':Ex d:/git<CR>')
-vim.keymap.set('n', '<leader>cdcfg', ':tabe ~/appData/local/nvim/init.lua<CR>')
+-- vim.keymap.set('n', '<leader>cdc', ':Telescope file_browser path=c:/ hidden=true<CR>')
+-- vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=d:/ hidden=true<CR>')
+-- vim.keymap.set('n', '<leader>cdg', ':Ex d:/git<CR>')
+-- vim.keymap.set('n', '<leader>cdcfg', ':tabe ~/appData/local/nvim/init.lua<CR>')
 
 -- MAC SETTINGS --
--- vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents hidden=true<CR>')
--- vim.keymap.set('n', '<leader>cdg', ':Telescope file_browser path=~/Documents hidden=true<CR>')
--- vim.keymap.set('n', '<leader>cdcfg', ':tabe ~/.config/nvim/init.lua<CR>')
+vim.keymap.set('n', '<leader>cdd', ':Telescope file_browser path=~/Documents hidden=true<CR>')
+vim.keymap.set('n', '<leader>cdg', ':Telescope file_browser path=~/Documents hidden=true<CR>')
+vim.keymap.set('n', '<leader>cdcfg', ':tabe ~/.config/nvim/init.lua<CR>')
 
 vim.keymap.set('n', '<leader>dd', ':Dashboard<CR>')
 vim.keymap.set('n', '<leader>p', ':Prettier<CR>')
@@ -1355,11 +1380,6 @@ mason_lspconfig.setup_handlers {function(server_name)
         settings = servers[server_name]
     }
 end}
-
-nvim_lsp.dartls.setup {
-    capabilities = capabilities,
-    on_attach = on_attach
-}
 
 local null_ls = require 'null-ls'
 
