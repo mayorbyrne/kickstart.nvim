@@ -925,7 +925,10 @@ header = vim.split([[
                     desc_hl = 'DiagnosticHint',
                     key = 'e',
                     key_format = ' %s', -- remove default surrounding `[]`
+                    --  PC SETTING
                     action = 'edit ~/appData/local/nvim/init.lua'
+                    -- MAC SETTING
+                    -- action = 'edit ~/.config/nvim/init.lua'
                 }, {
                     icon = ' ',
                     icon_hl = 'DiagnosticHint',
