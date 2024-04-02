@@ -4,7 +4,11 @@
 -- See the kickstart.nvim README for more information
 return {
   { 'github/copilot.vim' },
-  { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons' },
+  { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons', 
+    config = function()
+      require('bufferline').setup {}
+    end,
+  },
   {
     'akinsho/toggleterm.nvim',
     config = function()
