@@ -208,4 +208,7 @@ header = vim.split([[
       }
     end,
   },
+  {
+    'tpope/vim-fugitive',
+  },
 }
