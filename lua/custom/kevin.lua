@@ -49,7 +49,7 @@ vim.cmd('ca q bd!');
 
 vim.keymap.set('n', '<leader>kb', ':TermExec cmd="webdev serve"<CR>')
 
-local editCfg = require("custom.pc")
+local editCfg = require("custom.mac")
 
 return {
     editCfg = editCfg
