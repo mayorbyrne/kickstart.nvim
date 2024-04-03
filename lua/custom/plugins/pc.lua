@@ -2,6 +2,15 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
+local nvim_lsp = require 'lspconfig'
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+
+nvim_lsp.dartls.setup {
+    capabilities = capabilities,
+    -- on_attach = on_attach
+}
+
 return {
   { 'github/copilot.vim' },
   { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons', 
@@ -215,4 +224,16 @@ header = vim.split([[
   {
     'tpope/vim-fugitive',
   },
+  {
+    "nvim-tree/nvim-web-devicons",
+  },
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+  }
 }
