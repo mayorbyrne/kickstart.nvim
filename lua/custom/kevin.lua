@@ -1,5 +1,9 @@
 vim.g.netrw_sort_options = 'i'
 
+vim.g.minimap_width = 10
+vim.g.minimap_auto_start = 1
+vim.g.minimap_auto_start_win_enter = 1
+
 vim.cmd([[
 let g:lsc_auto_map = {
     \ 'GoToDefinition': 'gdd',
@@ -49,7 +53,7 @@ vim.cmd('ca q bd!');
 
 vim.keymap.set('n', '<leader>kb', ':TermExec cmd="webdev serve"<CR>')
 
-local editCfg = require("custom.pc")
+local editCfg = require("custom.mac")
 
 return {
     editCfg = editCfg
