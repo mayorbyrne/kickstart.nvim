@@ -15,7 +15,12 @@ return {
   { 'github/copilot.vim' },
   { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons', 
     config = function()
-      require('bufferline').setup {}
+      require('bufferline').setup {
+        options = {
+          diagnostics = "nvim_lsp",
+        },
+
+      }
     end,
   },
   {
@@ -232,8 +237,17 @@ header = vim.split([[
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       -- your configuration comes here
+      mode = "document_diagnostics",
+      icons = false,
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
     },
-  }
+  },
+  {
+    'echasnovski/mini.map',
+    version = false,
+    config = function()
+      require('mini.map').setup({})
+    end,
+  },
 }
