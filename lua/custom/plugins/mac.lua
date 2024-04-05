@@ -224,5 +224,23 @@ header = vim.split([[
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
     },
-  }
+  },
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      -- your configuration comes here
+      mode = "document_diagnostics",
+      icons = false,
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+  },
+  {
+    'echasnovski/mini.map',
+    version = false,
+    config = function()
+      require('mini.map').setup({})
+    end,
+  },
 }

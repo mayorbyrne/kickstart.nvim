@@ -98,7 +98,7 @@ vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix
 vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end, { desc = "Trouble Loclist" })
 vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end, { desc = "Trouble LSP References" })
 
-local editCfg = require("custom.pc")
+local editCfg = require("custom.mac")
 
 return {
     editCfg = editCfg

@@ -13,7 +13,7 @@ nvim_lsp.dartls.setup {
 
 return {
   { 'github/copilot.vim' },
-  { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons', 
+  { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
       require('bufferline').setup {
         options = {
