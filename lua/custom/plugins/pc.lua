@@ -2,14 +2,6 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
-local nvim_lsp = require 'lspconfig'
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-
-nvim_lsp.dartls.setup {
-    capabilities = capabilities,
-    -- on_attach = on_attach
-}
 
 return {
   { 'github/copilot.vim' },
@@ -39,7 +31,9 @@ return {
         vim.opt[option] = value
       end
 
-      require('toggleterm').setup {}
+      require('toggleterm').setup {
+        direction = "float",
+      }
     end,
   },
   {

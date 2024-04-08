@@ -86,8 +86,8 @@ vim.keymap.set('n', '<leader>bd', function()
     end
 end)
 
-vim.cmd('ca wq bd!');
-vim.cmd('ca q bd!');
+vim.cmd('ca wq bd!')
+vim.cmd('ca q bd!')
 
 vim.keymap.set('n', '<leader>kb', ':TermExec cmd="webdev serve"<CR>')
 
