@@ -86,10 +86,11 @@ vim.keymap.set('n', '<leader>bd', function()
     end
 end)
 
-vim.cmd('ca wq bd!');
-vim.cmd('ca q bd!');
+vim.cmd('ca wq bd!')
+vim.cmd('ca q bd!')
 
 vim.keymap.set('n', '<leader>kb', ':TermExec cmd="webdev serve"<CR>')
+vim.keymap.set('n', '<leader>kg', ':TermExec cmd="lazygit"<CR>')
 
 vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end, { desc = "Trouble" })
 vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end, { desc = "Trouble Workspace" })

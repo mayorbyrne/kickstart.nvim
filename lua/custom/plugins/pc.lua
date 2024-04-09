@@ -2,19 +2,12 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
-local nvim_lsp = require 'lspconfig'
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-
-nvim_lsp.dartls.setup {
-    capabilities = capabilities,
-    -- on_attach = on_attach
-}
 
 return {
   { 'github/copilot.vim' },
   { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
+      vim.opt.termguicolors = true
       require('bufferline').setup {
         options = {
           diagnostics = "nvim_lsp",
@@ -38,7 +31,9 @@ return {
         vim.opt[option] = value
       end
 
-      require('toggleterm').setup {}
+      require('toggleterm').setup {
+        direction = "float",
+      }
     end,
   },
   {

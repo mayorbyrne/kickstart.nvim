@@ -680,6 +680,37 @@ require('lazy').setup({
           end,
         },
       }
+      
+      local mason_registry = require('mason-registry')
+      local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
+
+      vim.cmd("echo '" .. vue_language_server_path .. "'")
+
+      local lspconfig = require('lspconfig')
+      lspconfig.dartls.setup {
+          capabilities = capabilities,
+          -- on_attach = on_attach
+      }
+
+      lspconfig.tsserver.setup {
+        init_options = {
+          plugins = {
+            {
+              name = '@vue/typescript-plugin',
+              location = vue_language_server_path,
+              languages = { 'vue' },
+            },
+          },
+        },
+      }
+
+      lspconfig.volar.setup {
+        init_options = {
+          vue = {
+            hybridMode = false,
+          },
+        },
+      }
     end,
   },
 
