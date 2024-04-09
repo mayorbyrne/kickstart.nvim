@@ -35,7 +35,7 @@ return {
     desc_hl = 'DiagnosticHint',
     key = 'e',
     key_format = ' %s', -- remove default surrounding `[]`
-    action = kevin.editCfg.editPluginsPC
+    action = kevin.editCfg.editCfg,
   },
   {
     icon = " ",
