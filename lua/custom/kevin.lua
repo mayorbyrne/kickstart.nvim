@@ -102,5 +102,8 @@ vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references")
 local editCfg = require("custom.pc")
 
 return {
-    editCfg = editCfg
+    editCfg = editCfg,
+    editKevin = editCfg.editKevin,
+    editPlugins = editCfg.editPlugins,
+    toggleterm_setup = editCfg.toggleterm_setup,
 }

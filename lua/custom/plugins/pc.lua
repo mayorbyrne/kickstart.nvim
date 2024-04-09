@@ -3,6 +3,8 @@
 --
 -- See the kickstart.nvim README for more information
 
+local kevin = require('custom.kevin')
+
 return {
   { 'github/copilot.vim' },
   { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons', 
@@ -12,29 +14,12 @@ return {
         options = {
           diagnostics = "nvim_lsp",
         },
-
       }
     end,
   },
   {
     'akinsho/toggleterm.nvim',
-    config = function()
-      local powershell_options = {
-        shell = vim.fn.executable 'pwsh' == 1 and 'pwsh' or 'powershell',
-        shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;',
-        shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait',
-        shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode',
-        shellquote = '',
-        shellxquote = '',
-      }
-      for option, value in pairs(powershell_options) do
-        vim.opt[option] = value
-      end
-
-      require('toggleterm').setup {
-        direction = "float",
-      }
-    end,
+    config = kevin.toggleterm_setup,
   },
   {
     'nvim-telescope/telescope-file-browser.nvim',
@@ -79,6 +64,7 @@ return {
           'javascript',
           'javascriptreact',
           'json',
+          'lua',
           'less',
           'markdown',
           'scss',
@@ -135,7 +121,6 @@ return {
     event = 'VimEnter',
     config = function()
 
-      local kevin = require('custom.kevin')
 
       require('dashboard').setup {
         theme = 'doom',
@@ -164,53 +149,7 @@ header = vim.split([[
 
 
 
-]], "\n"),          center = {
-            {
-              icon = ' ',
-              icon_hl = 'DiagnosticHint',
-              desc = 'New File           ',
-              desc_hl = 'DiagnosticHint',
-              key = 'n',
-              key_format = ' %s', -- remove default surrounding `[]`
-              action = 'ene',
-            },
-            {
-              icon = ' ',
-              icon_hl = 'DiagnosticHint',
-              desc = 'Recent Files       ',
-              desc_hl = 'DiagnosticHint',
-              key = 'r',
-              key_format = ' %s', -- remove default surrounding `[]`
-              action = 'Telescope oldfiles',
-            },
-            {
-              icon = ' ',
-              icon_hl = 'DiagnosticHint',
-              desc = 'Open Projects      ',
-              desc_hl = 'DiagnosticHint',
-              key = 'p',
-              key_format = ' %s', -- remove default surrounding `[]`
-              action = 'Telescope project',
-            },
-            {
-              icon = ' ',
-              icon_hl = 'DiagnosticHint',
-              desc = 'Edit Config        ',
-              desc_hl = 'DiagnosticHint',
-              key = 'e',
-              key_format = ' %s', -- remove default surrounding `[]`
-              action = kevin.editCfg.editCfg
-            },
-            {
-              icon = ' ',
-              icon_hl = 'DiagnosticHint',
-              desc = 'Quit               ',
-              desc_hl = 'DiagnosticHint',
-              key = 'q',
-              key_format = ' %s', -- remove default surrounding `[]`
-              action = 'quit',
-            },
-          },
+]], "\n"),          center = require("custom.plugins.dashboard_center"),
           footer = function()
             local stats = require('lazy').stats()
             local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
