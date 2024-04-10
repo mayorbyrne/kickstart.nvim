@@ -12,9 +12,11 @@ nvim_lsp.dartls.setup {
     -- on_attach = on_attach
 }
 
+local kevin = require('custom.kevin')
+
 return {
   { 'github/copilot.vim' },
-  { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons', 
+  { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
       vim.opt.termguicolors = true
       require('bufferline').setup {
@@ -26,11 +28,7 @@ return {
   },
   {
     'akinsho/toggleterm.nvim',
-    config = function()
-      require('toggleterm').setup {
-        direction = "float"
-      }
-    end,
+    config = kevin.toggleterm_setup,
   },
   {
     'nvim-telescope/telescope-file-browser.nvim',
@@ -160,53 +158,7 @@ header = vim.split([[
 
 
 
-]], "\n"),          center = {
-            {
-              icon = ' ',
-              icon_hl = 'DiagnosticHint',
-              desc = 'New File           ',
-              desc_hl = 'DiagnosticHint',
-              key = 'n',
-              key_format = ' %s', -- remove default surrounding `[]`
-              action = 'ene',
-            },
-            {
-              icon = ' ',
-              icon_hl = 'DiagnosticHint',
-              desc = 'Recent Files       ',
-              desc_hl = 'DiagnosticHint',
-              key = 'r',
-              key_format = ' %s', -- remove default surrounding `[]`
-              action = 'Telescope oldfiles',
-            },
-            {
-              icon = ' ',
-              icon_hl = 'DiagnosticHint',
-              desc = 'Open Projects      ',
-              desc_hl = 'DiagnosticHint',
-              key = 'p',
-              key_format = ' %s', -- remove default surrounding `[]`
-              action = 'Telescope project',
-            },
-            {
-              icon = ' ',
-              icon_hl = 'DiagnosticHint',
-              desc = 'Edit Config        ',
-              desc_hl = 'DiagnosticHint',
-              key = 'e',
-              key_format = ' %s', -- remove default surrounding `[]`
-              action = kevin.editCfg.editCfg
-            },
-            {
-              icon = ' ',
-              icon_hl = 'DiagnosticHint',
-              desc = 'Quit               ',
-              desc_hl = 'DiagnosticHint',
-              key = 'q',
-              key_format = ' %s', -- remove default surrounding `[]`
-              action = 'quit',
-            },
-          },
+]], "\n"), center = require("custom.plugins.dashboard_center"),
           footer = function()
             local stats = require('lazy').stats()
             local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
