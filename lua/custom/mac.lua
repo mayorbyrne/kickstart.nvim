@@ -7,7 +7,7 @@ local toggleTermSetup = require("custom.plugins.toggleterm_setup")
 
 return {
   editCfg = 'edit ~/.config/nvim/init.lua',
-  editKevin = 'edit ~/config/nvim/lua/custom/kevin.lua',
-  editPlugins = 'edit ~/config/nvim/lua/custom/plugins/mac.lua',
+  editKevin = 'edit ~/.config/nvim/lua/custom/kevin.lua',
+  editPlugins = 'edit ~/.config/nvim/lua/custom/plugins/mac.lua',
   toggleterm_setup = toggleTermSetup.mac,
 }

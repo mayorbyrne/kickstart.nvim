@@ -18,7 +18,8 @@ return {
   end,
   mac = function()
     require('toggleterm').setup {
-      direction = "float",
+      size = 10,
+      direction = "horizontal",
     }
   end,
 }

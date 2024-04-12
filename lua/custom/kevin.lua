@@ -74,7 +74,11 @@ vim.g.copilot_no_tab_map = true
 vim.keymap.set('n', '<leader>dd', ':Dashboard<CR>')
 vim.keymap.set('n', '<leader>p', ':Prettier<CR>')
 vim.keymap.set('n', '<leader>ee', ':Telescope file_browser<CR>')
-vim.keymap.set('n', '<leader>tt', ':ToggleTerm<CR>')
+vim.keymap.set('n', '<leader>tt', function()
+    local user_input = vim.fn.input("Enter Terminal Number: ")
+    local string = ":" .. user_input .. "ToggleTerm<CR>"
+    vim.cmd(string)
+end)
 vim.keymap.set('n', '<leader>bn', ':bn<CR>')
 vim.keymap.set('n', '<leader>bp', ':bp<CR>')
 vim.keymap.set('t', '<leader>bd', ':bd!<CR>')
@@ -99,7 +103,7 @@ vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix
 vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end, { desc = "Trouble Loclist" })
 vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end, { desc = "Trouble LSP References" })
 
-local editCfg = require("custom.pc")
+local editCfg = require("custom.mac")
 
 return {
     editCfg = editCfg,
