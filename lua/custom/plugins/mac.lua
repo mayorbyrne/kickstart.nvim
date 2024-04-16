@@ -16,16 +16,16 @@ local kevin = require('custom.kevin')
 
 return {
   { 'github/copilot.vim' },
-  { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons',
-    config = function()
-      vim.opt.termguicolors = true
-      require('bufferline').setup {
-        options = {
-          diagnostics = "nvim_lsp",
-        },
-      }
-    end,
-  },
+  -- { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons',
+  --   config = function()
+  --     vim.opt.termguicolors = true
+  --     require('bufferline').setup {
+  --       options = {
+  --         diagnostics = "nvim_lsp",
+  --       },
+  --     }
+  --   end,
+  -- },
   {
     'akinsho/toggleterm.nvim',
     config = kevin.toggleterm_setup,
@@ -86,7 +86,15 @@ return {
   {
     'Pocco81/auto-save.nvim',
     config = function()
-      require('auto-save').setup {}
+      require('auto-save').setup {
+	condition = function(buf)
+          if vim.bo[buf].filetype == "harpoon" then
+            return false
+          else
+            return true -- met condition(s), can save
+          end
+        end,
+      }
     end,
   },
   {
@@ -202,4 +210,24 @@ header = vim.split([[
       require('mini.map').setup({})
     end,
   },
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function ()
+      local harpoon = require('harpoon')
+      harpoon:setup({})
+
+      vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end,
+        { desc = "Add current file to harpoon" })
+      vim.keymap.set("n", "<leader>hq", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
+        { desc = "Toggle harpoon list" })
+
+      -- Toggle previous & next buffers stored within Harpoon list
+      vim.keymap.set("n", "<leader>hp", function() harpoon:list():prev() end,
+        { desc = "Go to previous harpoon buffer" })
+      vim.keymap.set("n", "<leader>hn", function() harpoon:list():next() end,
+        { desc = "Go to next harpoon buffer" })
+    end,
+  }
 }
