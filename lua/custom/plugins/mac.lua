@@ -34,9 +34,9 @@ return {
     'nvim-telescope/telescope-file-browser.nvim',
     dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
   },
-  {
-    'nvim-telescope/telescope-project.nvim',
-  },
+  -- {
+  --   'nvim-telescope/telescope-project.nvim',
+  -- },
   {
     'lukas-reineke/indent-blankline.nvim',
     main = 'ibl',
