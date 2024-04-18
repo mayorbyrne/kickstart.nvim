@@ -69,6 +69,11 @@ vim.keymap.set('n', 'd', '"_d', {})
 vim.keymap.set('v', 'd', '"_d', {})
 vim.keymap.set('n', 'c', '"_c', {})
 vim.keymap.set('v', 'c', '"_c', {})
+
+-- do not map c or d in SELECT mode
+vim.keymap.set('s', 'c', 'c', {})
+vim.keymap.set('s', 'd', 'd', {})
+
 vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
     expr = true,
     replace_keycodes = false
@@ -106,6 +111,8 @@ vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspac
 vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end, { desc = "Trouble Document" })
 vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end, { desc = "Trouble Quickfix" })
 vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end, { desc = "Trouble Loclist" })
+vim.keymap.set("n", "<leader>xp", function() require("trouble").previous({skip_groups = true, jump = true}) end, { desc = "Trouble Previous" })
+vim.keymap.set("n", "<leader>xn", function() require("trouble").next({skip_groups = true, jump = true}) end, { desc = "Trouble Next" })
 vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end, { desc = "Trouble LSP References" })
 
 local editCfg = require("custom.mac")
