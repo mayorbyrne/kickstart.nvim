@@ -221,5 +221,12 @@ header = vim.split([[
       vim.keymap.set("n", "<leader>hn", function() harpoon:list():next() end,
         { desc = "Go to next harpoon buffer" })
     end,
-  }
+  },
+  {
+    'airblade/vim-rooter',
+    config = function()
+      vim.g.rooter_silent_chdir = 1
+      vim.g.rooter_patterns = { '.git', '.gitignore', '.gitmodules', 'pubspec.yaml', 'package.json', 'CHANGELOG.md' }
+    end,
+  },
 }
