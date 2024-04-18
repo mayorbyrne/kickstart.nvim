@@ -125,7 +125,9 @@ return {
         group_overrides = {
           -- this supports the same val table as vim.api.nvim_set_hl
           -- use colors from this colorscheme by requiring vscode.colors!
-          Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
+          -- Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
+          LineNr = { fg = "#8f610a", bg = c.vscNone, bold = false },
+          CursorLineNr = { fg = "#F2CB05", bg = c.vscNone, bold = true },
         },
       }
       require('vscode').load()
