@@ -105,8 +105,10 @@ vim.cmd('ca q bd!')
 
 vim.keymap.set('n', '<leader>kb', ':TermExec cmd="webdev serve"<CR>')
 vim.keymap.set('n', '<leader>kg', ':TermExec cmd="lazygit"<CR>')
+vim.keymap.set('n', '<leader>gi', ':Git<CR>', { desc = "Git Fugitive" })
 
-vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end, { desc = "Trouble" })
+vim.keymap.set("n", "<leader>xx", function() require("trouble").open("workspace_diagnostics") end, { desc = "Trouble Open" })
+vim.keymap.set("n", "<leader>xc", function() require("trouble").close() end, { desc = "Trouble Close" })
 vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end, { desc = "Trouble Workspace" })
 vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end, { desc = "Trouble Document" })
 vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end, { desc = "Trouble Quickfix" })
