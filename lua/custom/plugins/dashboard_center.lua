@@ -26,7 +26,7 @@ return {
     desc_hl = 'DiagnosticHint',
     key = 'p',
     key_format = ' %s', -- remove default surrounding `[]`
-    action = 'Telescope project',
+    action = kevin.editCfg.openProjects,
   },
   {
     icon = ' ',
