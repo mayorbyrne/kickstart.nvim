@@ -141,8 +141,6 @@ return {
     event = 'VimEnter',
     config = function()
 
-      local kevin = require('custom.kevin')
-
       require('dashboard').setup {
         theme = 'doom',
         config = {

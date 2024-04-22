@@ -82,7 +82,7 @@ vim.g.copilot_no_tab_map = true
 
 vim.keymap.set('n', '<leader>dd', ':Dashboard<CR>')
 vim.keymap.set('n', '<leader>dr', ':Telescope oldfiles<CR>')
-vim.keymap.set('n', '<leader>p', ':Prettier<CR>')
+vim.keymap.set('n', '<leader>pp', ':Prettier<CR>')
 vim.keymap.set('n', '<leader>ee', ':Telescope file_browser<CR>')
 vim.keymap.set('n', '<leader>tt', function()
     local user_input = vim.fn.input("Enter Terminal Number: ")
