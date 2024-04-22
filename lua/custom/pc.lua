@@ -10,5 +10,6 @@ return {
   editCfg = 'edit ~/appData/local/nvim/init.lua',
   editKevin = 'edit ~/appData/Local/nvim/lua/custom/kevin.lua',
   editPlugins = 'edit ~/AppData/Local/nvim/lua/custom/plugins/pc.lua',
+  openProjects = 'Telescope file_browser path=d:/git hidden=true',
   toggleterm_setup = toggleTermSetup.pc,
 }

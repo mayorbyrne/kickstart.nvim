@@ -161,8 +161,6 @@ vim.opt.scrolloff = 10
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
-require("custom.kevin")
-
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -382,7 +380,7 @@ require('lazy').setup({
 
         -- [[ Configure Telescope ]]
         -- See `:help telescope` and `:help telescope.setup()`
-        local projectActions = require('telescope._extensions.project.actions')
+        -- local projectActions = require('telescope._extensions.project.actions')
         require('telescope').setup {
             -- You can put your default mappings / updates / etc. in here
             --  All the info you're looking for is in `:help telescope.setup()`
@@ -404,30 +402,30 @@ require('lazy').setup({
             },
             extensions = {
                 ['ui-select'] = {require('telescope.themes').get_dropdown()},
-                project = {
-                    base_dirs = {
-                      '~/Documents',
-                      -- { 'd:/git', max_depth = 2 }
-                    },
-                    hidden_files = true, -- default: false
-                    theme = "dropdown",
-                    order_by = "asc",
-                    search_by = "title",
-                    sync_with_nvim_tree = true, -- default false
-                    -- default for on_project_selected = find project files
-                    on_project_selected = function(prompt_bufnr)
-                        -- Do anything you want in here. For example:
-                        -- projectActions.change_working_directory(prompt_bufnr)
-                        projectActions.browse_project_files(prompt_bufnr)
-                    end
-                }
+                -- project = {
+                --     base_dirs = {
+                --       '~/Documents',
+                --       -- { 'd:/git', max_depth = 2 }
+                --     },
+                --     hidden_files = true, -- default: false
+                --     theme = "dropdown",
+                --     order_by = "asc",
+                --     search_by = "title",
+                --     sync_with_nvim_tree = true, -- default false
+                --     -- default for on_project_selected = find project files
+                --     on_project_selected = function(prompt_bufnr)
+                --         -- Do anything you want in here. For example:
+                --         -- projectActions.change_working_directory(prompt_bufnr)
+                --         projectActions.browse_project_files(prompt_bufnr)
+                --     end
+                -- }
             }
         }
 
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
-      pcall(require('telescope').load_extension, 'project')
+      -- pcall(require('telescope').load_extension, 'project')
 
         -- See `:help telescope.builtin`
         local builtin = require 'telescope.builtin'
@@ -951,6 +949,8 @@ require('lazy').setup({
     },
   },
 })
+
+require("custom.kevin")
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
