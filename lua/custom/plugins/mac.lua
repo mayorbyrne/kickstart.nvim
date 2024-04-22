@@ -16,16 +16,16 @@ local kevin = require('custom.kevin')
 
 return {
   { 'github/copilot.vim' },
-  { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons',
-    config = function()
-      vim.opt.termguicolors = true
-      require('bufferline').setup {
-        options = {
-          diagnostics = "nvim_lsp",
-        },
-      }
-    end,
-  },
+  -- { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons',
+  --   config = function()
+  --     vim.opt.termguicolors = true
+  --     require('bufferline').setup {
+  --       options = {
+  --         diagnostics = "nvim_lsp",
+  --       },
+  --     }
+  --   end,
+  -- },
   {
     'akinsho/toggleterm.nvim',
     config = kevin.toggleterm_setup,
@@ -34,11 +34,10 @@ return {
     'nvim-telescope/telescope-file-browser.nvim',
     dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
   },
+  -- {
+  --   'nvim-telescope/telescope-project.nvim',
+  -- },
   {
-    'nvim-telescope/telescope-project.nvim',
-  },
-  {
-
     'lukas-reineke/indent-blankline.nvim',
     main = 'ibl',
     opts = {
@@ -60,6 +59,9 @@ return {
         },
       },
     },
+  },
+  {
+    'jose-elias-alvarez/null-ls.nvim',
   },
   {
     'MunifTanjim/prettier.nvim',
@@ -86,7 +88,15 @@ return {
   {
     'Pocco81/auto-save.nvim',
     config = function()
-      require('auto-save').setup {}
+      require('auto-save').setup {
+	condition = function(buf)
+          if vim.bo[buf].filetype == "harpoon" then
+            return false
+          else
+            return true -- met condition(s), can save
+          end
+        end,
+      }
     end,
   },
   {
@@ -118,7 +128,9 @@ return {
         group_overrides = {
           -- this supports the same val table as vim.api.nvim_set_hl
           -- use colors from this colorscheme by requiring vscode.colors!
-          Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
+          -- Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
+          LineNr = { fg = "#8f610a", bg = c.vscNone, bold = false },
+          CursorLineNr = { fg = "#F2CB05", bg = c.vscNone, bold = true },
         },
       }
       require('vscode').load()
@@ -180,15 +192,6 @@ header = vim.split([[
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    },
-  },
-  {
-    "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-      -- your configuration comes here
       mode = "document_diagnostics",
       icons = false,
       -- or leave it empty to use the default settings
@@ -200,6 +203,32 @@ header = vim.split([[
     version = false,
     config = function()
       require('mini.map').setup({})
+    end,
+  },
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function ()
+      local harpoon = require('harpoon')
+      harpoon:setup({})
+
+      vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end,
+        { desc = "Add current file to harpoon" })
+      vim.keymap.set("n", "<leader>hq", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
+        { desc = "Toggle harpoon list" })
+
+      -- Toggle previous & next buffers stored within Harpoon list
+      vim.keymap.set("n", "<leader>hp", function() harpoon:list():prev() end,
+        { desc = "Go to previous harpoon buffer" })
+      vim.keymap.set("n", "<leader>hn", function() harpoon:list():next() end,
+        { desc = "Go to next harpoon buffer" })
+    end,
+  },
+  {
+    'airblade/vim-rooter',
+    config = function()
+      vim.g.rooter_patterns = { '.git', '.gitignore', '.gitmodules', 'pubspec.yaml', 'package.json', 'CHANGELOG.md' }
     end,
   },
 }

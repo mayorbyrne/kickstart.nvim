@@ -5,6 +5,10 @@ vim.g.minimap_width = 10
 vim.g.minimap_auto_start = 1
 vim.g.minimap_auto_start_win_enter = 1
 
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
+vim.o.expandtab = false
+
 vim.cmd([[
 let g:lsc_auto_map = {
     \ 'GoToDefinition': 'gdd',
@@ -65,6 +69,11 @@ vim.keymap.set('n', 'd', '"_d', {})
 vim.keymap.set('v', 'd', '"_d', {})
 vim.keymap.set('n', 'c', '"_c', {})
 vim.keymap.set('v', 'c', '"_c', {})
+
+-- do not map c or d in SELECT mode
+vim.keymap.set('s', 'c', 'c', {})
+vim.keymap.set('s', 'd', 'd', {})
+
 vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
     expr = true,
     replace_keycodes = false
@@ -72,6 +81,7 @@ vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
 vim.g.copilot_no_tab_map = true
 
 vim.keymap.set('n', '<leader>dd', ':Dashboard<CR>')
+vim.keymap.set('n', '<leader>dr', ':Telescope oldfiles<CR>')
 vim.keymap.set('n', '<leader>p', ':Prettier<CR>')
 vim.keymap.set('n', '<leader>ee', ':Telescope file_browser<CR>')
 vim.keymap.set('n', '<leader>tt', function()
@@ -95,12 +105,16 @@ vim.cmd('ca q bd!')
 
 vim.keymap.set('n', '<leader>kb', ':TermExec cmd="webdev serve"<CR>')
 vim.keymap.set('n', '<leader>kg', ':TermExec cmd="lazygit"<CR>')
+vim.keymap.set('n', '<leader>gi', ':Git<CR>', { desc = "Git Fugitive" })
 
-vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end, { desc = "Trouble" })
+vim.keymap.set("n", "<leader>xx", function() require("trouble").open("workspace_diagnostics") end, { desc = "Trouble Open" })
+vim.keymap.set("n", "<leader>xc", function() require("trouble").close() end, { desc = "Trouble Close" })
 vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end, { desc = "Trouble Workspace" })
 vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end, { desc = "Trouble Document" })
 vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end, { desc = "Trouble Quickfix" })
 vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end, { desc = "Trouble Loclist" })
+vim.keymap.set("n", "<leader>xp", function() require("trouble").previous({skip_groups = true, jump = true}) end, { desc = "Trouble Previous" })
+vim.keymap.set("n", "<leader>xn", function() require("trouble").next({skip_groups = true, jump = true}) end, { desc = "Trouble Next" })
 vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end, { desc = "Trouble LSP References" })
 
 local editCfg = require("custom.pc")
