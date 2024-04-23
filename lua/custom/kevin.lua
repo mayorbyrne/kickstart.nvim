@@ -84,11 +84,7 @@ vim.keymap.set('n', '<leader>dd', ':Dashboard<CR>')
 vim.keymap.set('n', '<leader>dr', ':Telescope oldfiles<CR>')
 vim.keymap.set('n', '<leader>pp', ':Prettier<CR>')
 vim.keymap.set('n', '<leader>ee', ':Telescope file_browser<CR>')
-vim.keymap.set('n', '<leader>tt', function()
-    local user_input = vim.fn.input("Enter Terminal Number: ")
-    local string = ":" .. user_input .. "ToggleTerm<CR>"
-    vim.cmd(string)
-end)
+
 vim.keymap.set('n', '<leader>bn', ':bn<CR>')
 vim.keymap.set('n', '<leader>bp', ':bp<CR>')
 vim.keymap.set('t', '<leader>bd', ':bd!<CR>')
@@ -123,5 +119,4 @@ return {
     editCfg = editCfg,
     editKevin = editCfg.editKevin,
     editPlugins = editCfg.editPlugins,
-    toggleterm_setup = editCfg.toggleterm_setup,
 }
