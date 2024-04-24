@@ -236,4 +236,8 @@ return {
       { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
     },
   },
+  {
+    'preservim/vimux',
+    config = function() end,
+  },
 }

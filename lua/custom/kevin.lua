@@ -99,8 +99,8 @@ end)
 vim.cmd('ca wq bd!')
 vim.cmd('ca q bd!')
 
-vim.keymap.set('n', '<leader>kb', ':TermExec cmd="webdev serve"<CR>')
-vim.keymap.set('n', '<leader>kg', ':TermExec cmd="lazygit"<CR>')
+vim.keymap.set('n', '<leader>kb', ':VimuxRunCommand "webdev serve"<CR>')
+vim.keymap.set('n', '<leader>kg', ':VimuxRunCommand "lazygit"<CR>')
 vim.keymap.set('n', '<leader>gi', ':Git<CR>', { desc = "Git Fugitive" })
 
 vim.keymap.set("n", "<leader>xx", function() require("trouble").open("workspace_diagnostics") end, { desc = "Trouble Open" })
