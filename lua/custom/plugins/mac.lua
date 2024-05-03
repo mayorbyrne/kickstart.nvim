@@ -161,7 +161,6 @@ return {
             return { '', '', '', '', '', 'Startup Time: ' .. ms .. ' ms', 'Plugins: ' .. stats.loaded .. ' loaded / ' .. stats.count .. ' installed' }
           end,
         },
-        dependencies = { { 'nvim-tree/nvim-web-devicons' } },
       }
     end,
   },
@@ -173,7 +172,6 @@ return {
   },
   {
     'folke/trouble.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
       -- your configuration comes here
       mode = 'document_diagnostics',
@@ -239,5 +237,13 @@ return {
   {
     'preservim/vimux',
     config = function() end,
+  },
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    config = function()
+      require('oil').setup()
+      vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+    end
   },
 }
