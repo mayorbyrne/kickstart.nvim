@@ -8,6 +8,7 @@ vim.g.minimap_auto_start_win_enter = 1
 vim.o.softtabstop = 2
 vim.o.shiftwidth = 2
 vim.o.expandtab = false
+vim.o.tabstop = 2
 
 vim.cmd([[
 let g:lsc_auto_map = {
@@ -112,6 +113,19 @@ vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist"
 vim.keymap.set("n", "<leader>xp", function() require("trouble").previous({skip_groups = true, jump = true}) end, { desc = "Trouble Previous" })
 vim.keymap.set("n", "<leader>xn", function() require("trouble").next({skip_groups = true, jump = true}) end, { desc = "Trouble Next" })
 vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end, { desc = "Trouble LSP References" })
+
+local actions = require('telescope.actions')
+
+vim.keymap.set('n', '<leader>qo', ':copen<CR>', { desc = "Quickfix Open" })
+vim.keymap.set('n', '<leader>qc', ':cclose<CR>', { desc = "Quickfix Close" })
+vim.keymap.set('n', '<leader>qn', ':cnext<CR>', { desc = "Quickfix Next" })
+vim.keymap.set('n', '<leader>qp', ':cprev<CR>', { desc = "Quickfix Previous" })
+vim.keymap.set('n', '<leader>qf', ':cfirst<CR>', { desc = "Quickfix First" })
+vim.keymap.set('n', '<leader>ql', ':clast<CR>', { desc = "Quickfix Last" })
+vim.keymap.set('n', '<leader>qq', function(buffer)
+    actions.send_to_qflist()
+    actions.open_qflist(buffer)
+end, { desc = "Quickfix List" })
 
 local editCfg = require("custom.mac")
 

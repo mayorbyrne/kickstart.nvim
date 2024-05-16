@@ -313,6 +313,7 @@ require('lazy').setup({
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
         ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
         ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
+        ['<leader>q'] = { name = '[Q]uickfix', _ = 'which_key_ignore' },
       }
       -- visual mode
       require('which-key').register({
@@ -375,6 +376,7 @@ require('lazy').setup({
         -- [[ Configure Telescope ]]
         -- See `:help telescope` and `:help telescope.setup()`
         -- local projectActions = require('telescope._extensions.project.actions')
+      local actions = require "telescope.actions"
         require('telescope').setup {
             -- You can put your default mappings / updates / etc. in here
             --  All the info you're looking for is in `:help telescope.setup()`
@@ -392,7 +394,7 @@ require('lazy').setup({
                     prompt_position = "top",
                     preview_cutoff = 10000000000000000000
                 },
-                border = true
+                border = true,
             },
             extensions = {
                 ['ui-select'] = {require('telescope.themes').get_dropdown()},
@@ -696,8 +698,6 @@ require('lazy').setup({
       
       local mason_registry = require('mason-registry')
       local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
-
-      vim.cmd("echo '" .. vue_language_server_path .. "'")
 
       local lspconfig = require('lspconfig')
       lspconfig.dartls.setup {
