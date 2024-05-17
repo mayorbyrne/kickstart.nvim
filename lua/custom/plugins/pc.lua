@@ -3,14 +3,10 @@
 --
 -- See the kickstart.nvim README for more information
 
-local kevin = require('custom.kevin')
+local kevin = require 'custom.kevin'
 
 return {
   { 'github/copilot.vim' },
-  {
-    'akinsho/toggleterm.nvim',
-    config = kevin.toggleterm_setup,
-  },
   {
     'nvim-telescope/telescope-file-browser.nvim',
     dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
@@ -117,12 +113,11 @@ return {
     'nvimdev/dashboard-nvim',
     event = 'VimEnter',
     config = function()
-
-
       require('dashboard').setup {
         theme = 'doom',
         config = {
-header = vim.split([[
+          header = vim.split(
+            [[
                                                                     
      *****                                                          
   ******                                         *                  
@@ -146,7 +141,10 @@ header = vim.split([[
 
 
 
-]], "\n"),          center = require("custom.plugins.dashboard_center"),
+]],
+            '\n'
+          ),
+          center = require 'custom.plugins.dashboard_center',
           footer = function()
             local stats = require('lazy').stats()
             local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
@@ -161,14 +159,14 @@ header = vim.split([[
     'tpope/vim-fugitive',
   },
   {
-    "nvim-tree/nvim-web-devicons",
+    'nvim-tree/nvim-web-devicons',
   },
   {
-    "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    'folke/trouble.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
       -- your configuration comes here
-      mode = "document_diagnostics",
+      mode = 'document_diagnostics',
       icons = false,
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
@@ -178,7 +176,7 @@ header = vim.split([[
     'echasnovski/mini.map',
     version = false,
     config = function()
-      require('mini.map').setup({})
+      require('mini.map').setup {}
     end,
   },
   {
