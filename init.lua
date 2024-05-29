@@ -715,15 +715,11 @@ require('lazy').setup({
             },
           },
         },
+        filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
       }
 
-      lspconfig.volar.setup {
-        init_options = {
-          vue = {
-            hybridMode = false,
-          },
-        },
-      }
+      -- No need to set `hybridMode` to `true` as it's the default value
+      lspconfig.volar.setup {}
     end,
   },
 
