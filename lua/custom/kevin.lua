@@ -116,16 +116,13 @@ vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references")
 
 local actions = require('telescope.actions')
 
+vim.keymap.set('n', '<leader>qq', ':copen<CR>', { desc = "Quickfix Open" })
 vim.keymap.set('n', '<leader>qo', ':copen<CR>', { desc = "Quickfix Open" })
 vim.keymap.set('n', '<leader>qc', ':cclose<CR>', { desc = "Quickfix Close" })
 vim.keymap.set('n', '<leader>qn', ':cnext<CR>', { desc = "Quickfix Next" })
 vim.keymap.set('n', '<leader>qp', ':cprev<CR>', { desc = "Quickfix Previous" })
 vim.keymap.set('n', '<leader>qf', ':cfirst<CR>', { desc = "Quickfix First" })
 vim.keymap.set('n', '<leader>ql', ':clast<CR>', { desc = "Quickfix Last" })
-vim.keymap.set('n', '<leader>qq', function(buffer)
-    actions.send_to_qflist()
-    actions.open_qflist(buffer)
-end, { desc = "Quickfix List" })
 
 local editCfg = require("custom.mac")
 
