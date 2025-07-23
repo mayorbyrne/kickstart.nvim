@@ -1,4 +1,16 @@
---[[
+if true then
+  -- example for lazy.nvim
+  -- change this to the correct path for your plugin manager
+  local snacks = vim.fn.stdpath 'data' .. '/lazy/snacks.nvim'
+  vim.opt.rtp:append(snacks)
+  require('snacks.profiler').startup {
+    startup = {
+      event = 'VimEnter', -- stop profiler on this event. Defaults to `VimEnter`
+      -- event = "UIEnter",
+      -- event = "VeryLazy",
+    },
+  }
+end --[[
 
 =====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
@@ -715,83 +727,83 @@ require('lazy').setup({
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        "stylua", -- Used to format Lua code
-        "cssls",
-        "html",
-        "lua_ls",
-        "prettier",
-        "prettierd",
-        "tailwindcss",
-        "ts_ls",
-        "vue-language-server",
+        'stylua', -- Used to format Lua code
+        'cssls',
+        'html',
+        'lua_ls',
+        'prettier',
+        'prettierd',
+        'tailwindcss',
+        'ts_ls',
+        'vue-language-server',
       })
-      require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-      require("mason-lspconfig").setup({
+      require('mason-lspconfig').setup {
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for tsserver)
-            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-            require("lspconfig")[server_name].setup(server)
+            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+            require('lspconfig')[server_name].setup(server)
           end,
         },
-      })
+      }
 
-      local mason_registry = require("mason-registry")
+      local mason_registry = require 'mason-registry'
 
-      local vue_language_server_path = vim.fn.expand("$MASON/bin/vue-language-server")
+      local vue_language_server_path = vim.fn.expand '$MASON/bin/vue-language-server'
 
-      local lspconfig = require("lspconfig")
-      lspconfig.dartls.setup({
+      local lspconfig = require 'lspconfig'
+      lspconfig.dartls.setup {
         capabilities = capabilities,
         settings = {
           dart = {
             lineLength = 300,
           },
         }, -- on_attach = on_attach
-      })
+      }
 
-      lspconfig.denols.setup({
-        root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+      lspconfig.denols.setup {
+        root_dir = lspconfig.util.root_pattern('deno.json', 'deno.jsonc'),
         init_options = {
           lint = true,
           unstable = true,
           suggest = {
             imports = {
               hosts = {
-                ["https://deno.land"] = true,
-                ["https://cdn.nest.land"] = true,
-                ["https://crux.land"] = true,
+                ['https://deno.land'] = true,
+                ['https://cdn.nest.land'] = true,
+                ['https://crux.land'] = true,
               },
             },
           },
         },
-      })
+      }
 
-      lspconfig.ts_ls.setup({
+      lspconfig.ts_ls.setup {
         init_options = {
           plugins = {
             {
-              name = "@vue/typescript-plugin",
+              name = '@vue/typescript-plugin',
               location = vue_language_server_path,
-              languages = { "vue" },
+              languages = { 'vue' },
             },
           },
         },
-        filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+        filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
         on_attach = function(client, bufnr)
-          vim.keymap.set("n", "<leader>ro", function()
-            vim.lsp.buf.execute_command({
-              command = "_typescript.organizeImports",
-              arguments = { vim.fn.expand("%:p") },
-            })
+          vim.keymap.set('n', '<leader>ro', function()
+            vim.lsp.buf.execute_command {
+              command = '_typescript.organizeImports',
+              arguments = { vim.fn.expand '%:p' },
+            }
           end, { buffer = bufnr, remap = false })
         end,
         root_dir = function(filename, bufnr)
-          local denoRootDir = lspconfig.util.root_pattern("deno.json", "deno.json")(filename)
+          local denoRootDir = lspconfig.util.root_pattern('deno.json', 'deno.json')(filename)
           if denoRootDir then
             -- print("this seems to be a deno project; returning nil so that tsserver does not attach")
             return nil
@@ -799,10 +811,10 @@ require('lazy').setup({
             -- print("this seems to be a ts project; return root dir based on package.json")
           end
 
-          return lspconfig.util.root_pattern("package.json")(filename)
+          return lspconfig.util.root_pattern 'package.json'(filename)
         end,
         single_file_support = true,
-      })
+      }
     end,
   },
 
